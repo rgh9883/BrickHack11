@@ -1,3 +1,16 @@
 #quiz{
     display: none;
 }
+
+.round-time-bar div {
+    height: 5px;
+    background: linear-gradient(to bottom, red, #900);
+    animation: roundtime calc(var(--duration) * 1s) linear forwards;
+    transform-origin: left center;
+}
+
+@keyframes roundtime {
+    to {
+        transform: scaleX(0);
+    }
+}

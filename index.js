@@ -7,8 +7,7 @@ class Question {
 }
 
 let questions = [];
-let question_num = 0;
-let correct = 0;
+let question_num;
 let score = 0;
 
 function get_question() {
@@ -32,6 +31,7 @@ function get_question() {
                     questions.push(new Question(data.results[i].question, 
                         data.results[i].correct_answer, data.results[i].incorrect_answers));
                 }
+                question_num = 0;
                 update_question();
             }
         })
@@ -52,7 +52,9 @@ function update_question(){
 }
 
 function start(){
-    get_question();
+    if(questions.length == 0) {
+        get_question();
+    }
     document.getElementById("quiz").style.display = "block";
     document.getElementById("start").style.display = "none";
 }
@@ -60,18 +62,26 @@ function start(){
 function select(id){
     let selected_answer = document.getElementById(id).innerHTML;
     let correct_answer = questions[question_num].correct_answer;
+    question_num++;
 
     if (selected_answer === correct_answer) {
-        correct++;
-        score += 1;
+        score++;
         document.getElementById("score").innerHTML = score;
         alert("Correct!");
     } else {
-        alert("Incorrect!");
+        alert("Incorrect! The correct answer was " + correct_answer);
+        reset();
     }
-
-    question_num++;
     if (question_num < questions.length) {
         update_question();
+    } else {
+        get_question();
     }
+}
+
+function reset(){
+    score = 0;
+    document.getElementById("score").innerHTML = score;
+    document.getElementById("quiz").style.display = "none";
+    document.getElementById("start").style.display = "block";
 }
