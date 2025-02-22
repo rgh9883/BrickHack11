@@ -1,16 +1,78 @@
 #quiz{
     display: none;
 }
-
 .round-time-bar div {
-    height: 5px;
-    background: linear-gradient(to bottom, red, #900);
+    height: 100%;
+    width: 100%;
+    background-color: #4CAF50;
     animation: roundtime calc(var(--duration) * 1s) linear forwards;
     transform-origin: left center;
+}
+
+.round-time-bar {
+    margin-top: 20px;
+    height: 10px;
+    background-color: #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+    position: relative;
 }
 
 @keyframes roundtime {
     to {
         transform: scaleX(0);
     }
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    text-align: center;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 600px;
+}
+
+h1 {
+    color: #333;
+}
+
+#start button, .answers button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 15px 20px;
+    margin: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+    max-width: 300px;
+}
+
+#start button:hover, .answers button:hover {
+    background-color: #45a049;
+}
+
+.answers {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.answers button {
+    flex: 1 1 45%;
+    margin: 10px;
 }

@@ -9,22 +9,30 @@
     <link href="index.css" rel="stylesheet" type="text/css">
 </head>
 <body>
+    <div class="container">
         <h1>Sports Trivia</h1>
         <div id="start">
             <button id="start_quiz" onclick="start()">Start Quiz</button>
         </div>
         <div id="quiz">
             <h3 id="q">Question?</h3>
-            <button id="a0" onclick="select('a0')">Answer 1</button>
-            <button id="a1" onclick="select('a1')">Answer 2</button>
-            <button id="a2" onclick="select('a2')">Answer 3</button>
-            <button id="a3" onclick="select('a3')">Answer 4</button><br>
+            <div class="answers">
+                <button id="a0" onclick="select('a0')">Answer 1</button>
+                <button id="a1" onclick="select('a1')">Answer 2</button>
+                <button id="a2" onclick="select('a2')">Answer 3</button>
+                <button id="a3" onclick="select('a3')">Answer 4</button><br> 
+            </div>
             <h4>Score: <span id="score">0</span></h4>
             <div class="round-time-bar" style="--duration: 15;">
                 <div></div>
             </div>
         </div>
-        
-        
+        <div id="incorrect">
+            
+        </div>
+        <div id="correct">
+
+        </div>
+    </div>
 </body>
 </html>
