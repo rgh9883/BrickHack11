@@ -7,7 +7,9 @@ class Question {
 }
 
 let questions = [];
-let questionNum = 0;
+let question_num = 0;
+let correct = 0;
+let score = 0;
 
 function get_question() {
     let options = {
@@ -39,13 +41,37 @@ function get_question() {
 }
 
 function update_question(){
-    document.getElementById("q").innerHTML = questions[questionNum].question;
-    document.getElementById("a1").innerHTML = questions[questionNum].correct_answer;
-    document.getElementById("a2").innerHTML = questions[questionNum].incorrect_answers[0];
-    document.getElementById("a3").innerHTML = questions[questionNum].incorrect_answers[1];
-    document.getElementById("a4").innerHTML = questions[questionNum].incorrect_answers[2];
+    let answers = [questions[question_num].correct_answer, ...questions[question_num].incorrect_answers];
+    answers = answers.sort(() => Math.random() - 0.5);
+
+    document.getElementById("q").innerHTML = questions[question_num].question;
+    document.getElementById("a0").innerHTML = answers[0];
+    document.getElementById("a1").innerHTML = answers[1];
+    document.getElementById("a2").innerHTML = answers[2];
+    document.getElementById("a3").innerHTML = answers[3];
 }
 
 function start(){
-    
+    get_question();
+    document.getElementById("quiz").style.display = "block";
+    document.getElementById("start").style.display = "none";
+}
+
+function select(id){
+    let selected_answer = document.getElementById(id).innerHTML;
+    let correct_answer = questions[question_num].correct_answer;
+
+    if (selected_answer === correct_answer) {
+        correct++;
+        score += 1;
+        document.getElementById("score").innerHTML = score;
+        alert("Correct!");
+    } else {
+        alert("Incorrect!");
+    }
+
+    question_num++;
+    if (question_num < questions.length) {
+        update_question();
+    }
 }
