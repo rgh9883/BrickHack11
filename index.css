@@ -1,6 +1,15 @@
-#quiz{
+#quiz {
     display: none;
 }
+
+#incorrect {
+    display: none;
+}
+
+#correct {
+    display: none;
+}
+
 .round-time-bar div {
     height: 100%;
     width: 100%;

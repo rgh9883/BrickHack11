@@ -10,7 +10,20 @@ let questions = [];
 let question_num;
 let score = 0;
 
-function get_question() {
+let time = 15;
+let time_int;
+
+function timer(){
+    time--;
+    if(time == 0){
+        incorrect("You ran out of time!");
+        clearInterval(time_int);
+        time = 15;
+        after_question();
+    }
+}
+
+function get_question(){
     let options = {
         method: 'GET'
     }
@@ -57,21 +70,26 @@ function start(){
     }
     document.getElementById("quiz").style.display = "block";
     document.getElementById("start").style.display = "none";
+    time_int = setInterval(timer, 1000);
 }
 
 function select(id){
     let selected_answer = document.getElementById(id).innerHTML;
     let correct_answer = questions[question_num].correct_answer;
-    question_num++;
+
+    clearInterval(time_int);
+    time = 15;
 
     if (selected_answer === correct_answer) {
-        score++;
-        document.getElementById("score").innerHTML = score;
-        alert("Correct!");
+        correct();
     } else {
-        alert("Incorrect! The correct answer was " + correct_answer);
-        reset();
+        incorrect("Incorrect! The answer was \"" + correct_answer + "\"");
     }
+    after_question();
+}
+
+function after_question(){
+    question_num++;
     if (question_num < questions.length) {
         update_question();
     } else {
@@ -79,9 +97,34 @@ function select(id){
     }
 }
 
-function reset(){
+function next_question(){
+    document.getElementById("body").style.backgroundColor = "#f0f0f0";
+    document.getElementById("quiz").style.display = "block";
+    document.getElementById("correct").style.display = "none";
+    document.getElementById("incorrect").style.display = "none";
+    time_int = setInterval(timer, 1000);
+}
+
+function play_again(){
     score = 0;
     document.getElementById("score").innerHTML = score;
+    next_question();
+}
+
+function incorrect(text){
+    document.getElementById("body").style.backgroundColor = "red";
+    document.getElementById("final_score").innerHTML = score;
+    document.getElementById("end_text").innerHTML = text;
     document.getElementById("quiz").style.display = "none";
-    document.getElementById("start").style.display = "block";
+    document.getElementById("incorrect").style.display = "block";
+}
+
+function correct(){
+    score++;
+    document.getElementById("points").innerHTML = 1;
+    document.getElementById("score").innerHTML = score;
+    document.getElementById("current_score").innerHTML = score;
+    document.getElementById("quiz").style.display = "none";
+    document.getElementById("correct").style.display = "block";
+    document.getElementById("body").style.backgroundColor = "#4CAF50";
 }

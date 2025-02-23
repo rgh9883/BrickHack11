@@ -8,19 +8,19 @@
     <script src="index.js"></script>
     <link href="index.css" rel="stylesheet" type="text/css">
 </head>
-<body>
+<body id="body">
     <div class="container">
-        <h1>Sports Trivia</h1>
         <div id="start">
+            <h1>Sports Trivia</h1>
             <button id="start_quiz" onclick="start()">Start Quiz</button>
         </div>
         <div id="quiz">
-            <h3 id="q">Question?</h3>
+            <h2 id="q">Question?</h2>
             <div class="answers">
                 <button id="a0" onclick="select('a0')">Answer 1</button>
                 <button id="a1" onclick="select('a1')">Answer 2</button>
                 <button id="a2" onclick="select('a2')">Answer 3</button>
-                <button id="a3" onclick="select('a3')">Answer 4</button><br> 
+                <button id="a3" onclick="select('a3')">Answer 4</button><br>
             </div>
             <h4>Score: <span id="score">0</span></h4>
             <div class="round-time-bar" style="--duration: 15;">
@@ -28,10 +28,17 @@
             </div>
         </div>
         <div id="incorrect">
-            
+            <h2>Game Over</h2>
+            <h3 id="end_text"></h3>
+            <h4>Your Score: <span id="final_score">0</span></h4>
+            Name: <input type="text">
+            <button>Submit Score to Leaderboard</button><br>
+            <button onclick="play_again()">Play Again</button>
         </div>
         <div id="correct">
-
+            <h2>Correct! +<span id="points"></span></h2>
+            <h4>Score: <span id="current_score">0</span></h4>
+            <button onclick="next_question()">Next Question</button>
         </div>
     </div>
 </body>
