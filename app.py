@@ -4,6 +4,7 @@ from bson.json_util import dumps
 from flask_cors import CORS
 import os
 from dotenv import load_dotenv
+import logging
 
 load_dotenv()
 
@@ -11,6 +12,13 @@ app = Flask(__name__)
 CORS(app)
 
 db_password = os.getenv('DB_PASSWORD')
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+if not db_password:
+    logger.error("DB_PASSWORD environment variable not set")
+    raise ValueError("DB_PASSWORD environment variable not set")
 
 
 client = MongoClient("mongodb+srv://rgh9883:" +  db_password + "@scores.rk25j.mongodb.net/?retryWrites=true&w=majority&appName=Scores")
