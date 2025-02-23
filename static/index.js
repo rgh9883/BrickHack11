@@ -157,7 +157,7 @@ function submit_score(name){
         body: JSON.stringify({name: name, score: score})
     }
 
-    fetch('http://localhost:5000/submit_score', options)
+    fetch('https://sports-trivia-game-ayavbgg0b0bpf7f5.eastus-01.azurewebsites.net/submit_score', options)
     .then(response => {
         if(!response.ok) {
             throw new Error('Network response was not ok');
