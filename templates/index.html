@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sports Trivia</title>
+    <title>Sports IQ Showdown</title>
     
     <script src="{{ url_for('static', filename='index.js') }}"></script>
     <link href="{{ url_for('static', filename='index.css') }}" rel="stylesheet" type="text/css">
@@ -11,8 +11,8 @@
 <body id="body">
     <div class="container">
         <div id="start">
-            <h1>Sports Trivia</h1>
-            <button id="start_quiz" onclick="start()">Start Quiz</button>
+            <h1>Sports IQ Showdown</h1>
+            <button id="start_quiz" onclick="start()">Start Game</button>
         </div>
         <div id="quiz">
             <h2 id="q">Question?</h2>
@@ -41,7 +41,7 @@
             <button onclick="next_question()">Next Question</button>
         </div>
         <div id="leaderboard">
-            <h2>Leaderboard</h2>
+            <h1>Leaderboard</h1>
             <span id="leaderboard_table"></span>
             <button onclick="play_again()">Play Again</button>
         </div>

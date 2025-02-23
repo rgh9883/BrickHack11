@@ -130,7 +130,7 @@ function incorrect(text){
 
 function correct(){
     score += 100 + time*10;
-    document.getElementById("points").innerHTML = 1;
+    document.getElementById("points").innerHTML = 100 + time*10;
     document.getElementById("score").innerHTML = score;
     document.getElementById("current_score").innerHTML = score;
     document.getElementById("quiz").style.display = "none";
@@ -146,6 +146,7 @@ function submit_score_helper(){
         return;
     }
     submit_score(name);
+    document.getElementById("name").value = "";
 }
 
 function submit_score(name){
