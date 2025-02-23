@@ -86,13 +86,13 @@ function select(id){
     console.log(selected_answer + ", " + correct_answer)
 
     clearInterval(time_int);
-    time = 15;
 
     if (selected_answer === correct_answer) {
         correct();
     } else {
         incorrect("Incorrect! The answer was \"" + correct_answer + "\"");
     }
+    time = 15;
     after_question();
 }
 
@@ -129,7 +129,7 @@ function incorrect(text){
 }
 
 function correct(){
-    score++;
+    score += 100 + time*10;
     document.getElementById("points").innerHTML = 1;
     document.getElementById("score").innerHTML = score;
     document.getElementById("current_score").innerHTML = score;
