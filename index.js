@@ -128,3 +128,37 @@ function correct(){
     document.getElementById("correct").style.display = "block";
     document.getElementById("body").style.backgroundColor = "#4CAF50";
 }
+
+function submit_score_helper(){
+    let name = document.getElementById("name").value;
+    name.trim();
+    if(name === '') {
+        alert("YOU MUST INPUT A NAME!!!");
+        return;
+    }
+    submit_score(name);
+}
+
+function submit_score(name){
+    let options = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({name: name, score: score})
+    }
+
+    fetch('http://localhost:5000/submit_score', options)
+    .then(response => {
+        if(!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log(data);
+    })
+    .catch(error => {
+        console.error('Fetch error:', error);
+    });
+}
