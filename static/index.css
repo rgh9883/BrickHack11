@@ -10,6 +10,10 @@
     display: none;
 }
 
+#leaderboard {
+    display: none;
+}
+
 .round-time-bar div {
     height: 100%;
     width: 100%;
@@ -49,7 +53,7 @@ body {
     background-color: #fff;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     width: 90%;
     max-width: 600px;
 }

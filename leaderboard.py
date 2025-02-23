@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, render_template
 from pymongo import MongoClient
 from bson.json_util import dumps
 from flask_cors import CORS
@@ -16,6 +16,10 @@ db_password = os.getenv('DB_PASSWORD')
 client = MongoClient("mongodb+srv://rgh9883:" +  db_password + "@scores.rk25j.mongodb.net/?retryWrites=true&w=majority&appName=Scores")
 
 collection = client['Leaderboard']['Scores']
+
+@app.route('/')
+def index():
+    return render_template('index.html')
 
 @app.route('/submit_score', methods=['POST'])
 def submit_score():

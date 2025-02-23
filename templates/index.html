@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sports Trivia</title>
     
-    <script src="index.js"></script>
-    <link href="index.css" rel="stylesheet" type="text/css">
+    <script src="{{ url_for('static', filename='index.js') }}"></script>
+    <link href="{{ url_for('static', filename='index.css') }}" rel="stylesheet" type="text/css">
 </head>
 <body id="body">
     <div class="container">
@@ -39,6 +39,11 @@
             <h2>Correct! +<span id="points"></span></h2>
             <h4>Score: <span id="current_score">0</span></h4>
             <button onclick="next_question()">Next Question</button>
+        </div>
+        <div id="leaderboard">
+            <h2>Leaderboard</h2>
+            <span id="leaderboard_table"></span>
+            <button onclick="play_again()">Play Again</button>
         </div>
     </div>
 </body>

@@ -73,9 +73,17 @@ function start(){
     time_int = setInterval(timer, 1000);
 }
 
+function decode_HTML(str){
+    var element = document.createElement('div');
+    element.innerHTML = str;
+    return element.textContent || element.innerText;
+}
+
 function select(id){
     let selected_answer = document.getElementById(id).innerHTML;
-    let correct_answer = questions[question_num].correct_answer;
+    let correct_answer = decode_HTML(questions[question_num].correct_answer);
+    console.log(selected_answer === correct_answer);
+    console.log(selected_answer + ", " + correct_answer)
 
     clearInterval(time_int);
     time = 15;
@@ -108,6 +116,7 @@ function next_question(){
 function play_again(){
     score = 0;
     document.getElementById("score").innerHTML = score;
+    document.getElementById('leaderboard').style.display = "none";
     next_question();
 }
 
@@ -157,8 +166,22 @@ function submit_score(name){
     })
     .then(data => {
         console.log(data);
+        display_leaderboard(data);
     })
     .catch(error => {
         console.error('Fetch error:', error);
     });
+}
+
+function display_leaderboard(data){
+    html = "<table><tr><th>Place</th><th>Name</th><th>Score</th></tr>"
+
+    for(i = 0; i < data.length; i++) {
+        html += `<tr><td>${i+1}</td><td>${data[i].name}</td><td>${data[i].score}</td></tr>`;
+    }
+
+    html += "</table>";
+    document.getElementById('incorrect').style.display = "none";
+    document.getElementById('leaderboard_table').innerHTML = html;
+    document.getElementById('leaderboard').style.display = "block";
 }
