@@ -9,7 +9,7 @@ import logging
 load_dotenv()
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={r"/*": {"origins": "*"}})
 
 db_password = os.getenv('DB_PASSWORD')
 
@@ -37,4 +37,5 @@ def submit_score():
     return dumps(scores)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get('PORT', 8000))
+    app.run(host='0.0.0.0', port=port, debug=True)
